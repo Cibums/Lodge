@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
@@ -8,12 +7,18 @@ public class AudioController : MonoBehaviour
 
     private void Awake()
     {
+        //Creates instance of class
         if (audioController == null)
         {
             audioController = this;
         }
     }
 
+    /// <summary>
+    /// Plays sound
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="volume"></param>
     public void PlaySound(AudioClip clip, float volume = 1)
     {
         AudioSource source = gameObject.AddComponent<AudioSource>();
@@ -24,7 +29,13 @@ public class AudioController : MonoBehaviour
         StartCoroutine(DestroyAfter(source, clip.length));
     }
 
-    IEnumerator DestroyAfter(Component obj, float seconds)
+    /// <summary>
+    /// Destroys specific component after a specfici amount of seconds
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    private IEnumerator DestroyAfter(Component obj, float seconds)
     {
         yield return new WaitForSeconds(seconds);
         Destroy(obj);

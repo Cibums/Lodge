@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Objects")]
     public Transform target;
     public Vector3 targetOffset;
+
+    [Header("Settings")]
     public float distance = 5.0f;
     public float maxDistance = 20;
     public float minDistance = .6f;
@@ -29,6 +32,9 @@ public class CameraController : MonoBehaviour
     void Start() { Init(); }
     void OnEnable() { Init(); }
 
+    /// <summary>
+    /// Initialize the camera and find a target.
+    /// </summary>
     public void Init()
     {
         //If there is no target, create a temporary target at 'distance' from the cameras current viewpoint
@@ -103,7 +109,13 @@ public class CameraController : MonoBehaviour
         position = target.position - (rotation * Vector3.forward * currentDistance + targetOffset);
         transform.position = position;
     }
-
+    /// <summary>
+    /// Math for angle.
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
     private static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360)

@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyWhenEmpty : MonoBehaviour
 {
-    void Update()
+    private void Update()
     {
+        //If transform has no children, destroy
         if (transform.childCount == 0)
         {
             Destroy(gameObject);
-        }       
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Storage : MachineBehaviour
 {
@@ -17,6 +16,7 @@ public class Storage : MachineBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Picks up item in scene to inventory
         if (other.gameObject.tag == "Item" && GameController.gameController.inventory.Count != GameController.gameController.maxItems)
         {
             GameController.gameController.inventory.Add(other.gameObject.GetComponent<ItemBehaivour>().id);
@@ -33,18 +33,22 @@ public class Storage : MachineBehaviour
             return;
         }
 
+        //Destroys random items that doesn't fit in inventory
         if (GameController.gameController.inventory.Count > GameController.gameController.maxItems - size)
         {
+            //Gets how many items that should be destroyed
             int itemsToDestroyCount = GameController.gameController.inventory.Count - (GameController.gameController.maxItems - size);
 
             Debug.Log("Destroyed " + itemsToDestroyCount.ToString() + " random items from storages");
 
             for (int i = 0; i < itemsToDestroyCount; i++)
             {
+                //Destroys
                 GameController.gameController.DestroyRandomItem();
             }
         }
 
+        //Updates max items
         GameController.gameController.maxItems -= size;
     }
 }

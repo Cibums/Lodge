@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Growing : MonoBehaviour
 {
@@ -9,14 +7,14 @@ public class Growing : MonoBehaviour
     public int maxTime;
 
     private int time;
-    private int ticks; 
+    private int ticks;
 
-    void Start()
+    private void Start()
     {
         time = Random.Range(minTime, maxTime);
     }
 
-    void Update()
+    private void Update()
     {
         if (ticks >= time)
         {
@@ -26,7 +24,7 @@ public class Growing : MonoBehaviour
         ticks++;
     }
 
-    void Grow()
+    private void Grow()
     {
         GameController.gameController.PlaceTree(new Vector2(transform.position.x, transform.position.z), currentTreeHeight + 1);
         gameObject.GetComponent<MachineBehaviour>().ignoreDestruction = true;

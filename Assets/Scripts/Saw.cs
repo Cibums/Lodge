@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Saw : MachineBehaviour
 {
@@ -12,10 +10,13 @@ public class Saw : MachineBehaviour
         bool has = false;
         int id = -1;
 
+        //For all items that are sawable
         foreach (int i in sawableItems)
         {
+            //If collided item is sawable
             if (other.gameObject.GetComponent<ItemBehaivour>().id == i)
             {
+                //Set id to item id
                 id = other.gameObject.GetComponent<ItemBehaivour>().id;
                 has = true;
             }
@@ -23,43 +24,56 @@ public class Saw : MachineBehaviour
 
         if (has)
         {
+            //Sets last conveyor
             if (other.gameObject.GetComponent<ItemBehaivour>())
             {
                 lastConveyor = other.gameObject.GetComponent<ItemBehaivour>().lastConveyor;
             }
 
-            SpawnItem();
+            //Saws
+            SpawnItem(id);
 
             Destroy(other.gameObject);
         }
+    }
 
-        int GetSawedID(int itemID)
+    /// <summary>
+    /// Gets ID that the item should have after sawed
+    /// </summary>
+    /// <param name="itemID"></param>
+    /// <returns></returns>
+    private int GetSawedID(int itemID)
+    {
+        switch (itemID)
         {
-            switch (itemID)
+            case 0:
+                return 3;
+
+            default:
+                return 0;
+        }
+    }
+
+    /// <summary>
+    /// Spawns item in scene
+    /// </summary>
+    private void SpawnItem(int id)
+    {
+        Transform conveyor = null;
+
+        //Gets nearest conveyor
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Conveyor"))
+        {
+            if (Vector3.Distance(go.transform.position, transform.position) <= 1.2f && go.transform != lastConveyor)
             {
-                case 0:
-                    return 3;
-                default:
-                    return 0;
+                conveyor = go.transform;
             }
         }
 
-        void SpawnItem()
+        if (conveyor != null)
         {
-            Transform conveyor = null;
-
-            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Conveyor"))
-            {
-                if (Vector3.Distance(go.transform.position, transform.position) <= 1.2f && go.transform != lastConveyor)
-                {
-                    conveyor = go.transform;
-                }
-            }
-
-            if (conveyor != null)
-            {
-                Instantiate(GameController.gameController.allItems[GetSawedID(id)].prefab, conveyor.position + new Vector3(0, 0.3f, 0), Quaternion.identity).GetComponent<ItemBehaivour>().id = GetSawedID(id);
-            }
+            //Spawns
+            Instantiate(GameController.gameController.allItems[GetSawedID(id)].prefab, conveyor.position + new Vector3(0, 0.3f, 0), Quaternion.identity).GetComponent<ItemBehaivour>().id = GetSawedID(id);
         }
     }
 }

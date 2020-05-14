@@ -11,6 +11,9 @@ public class MachineBehaviour : MonoBehaviour
     [HideInInspector] public bool isQuitting = false;
     [HideInInspector] public bool ignoreDestruction = false;
 
+    /// <summary>
+    /// Rotates machine 90 degreesm 
+    /// </summary>
     public void Rotate()
     {
         transform.Rotate(new Vector3(0, 90, 0));
@@ -23,10 +26,12 @@ public class MachineBehaviour : MonoBehaviour
             return;
         }
 
+        //Tries to spawn object when destroyed, if prefab specified
         if (destroyedPrefab != null)
         {
             GameObject go = Instantiate(destroyedPrefab, transform.position, Quaternion.identity);
 
+            //Adds a small force to all the children of the spawned object
             foreach (Transform child in go.transform)
             {
                 if (child.gameObject.GetComponent<Rigidbody>())
@@ -36,11 +41,13 @@ public class MachineBehaviour : MonoBehaviour
             }
         }
 
+        //Adds all dropped items to inventory
         for (int i = 0; i < dropAmount; i++)
         {
             GameController.gameController.inventory.Add(dropItemID);
         }
 
+        //Effects
         AudioController.audioController.PlaySound(destroySound);
         Instantiate(GameController.gameController.destroyParticles, transform.position, Quaternion.identity);
     }

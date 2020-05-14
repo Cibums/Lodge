@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Lodge : MachineBehaviour
 {
@@ -9,11 +7,16 @@ public class Lodge : MachineBehaviour
 
     private void OnMouseDown()
     {
+        //When clicked open upgrade menu
         GameController.gameController.menuOpen = true;
         lodgeOptionsPanel.gameObject.SetActive(true);
+        //Updates text to level
         levelText.SetText("Level " + GameController.gameController.level.ToString());
     }
 
+    /// <summary>
+    /// Closes lodge upgrade menu
+    /// </summary>
     public void Close()
     {
         GameController.gameController.menuOpen = false;

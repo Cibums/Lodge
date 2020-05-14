@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Output : MachineBehaviour
 {
-    float t = 0;
+    private float t = 0;
 
     private void Update()
     {
@@ -18,10 +16,14 @@ public class Output : MachineBehaviour
         }
     }
 
-    void OutputItem()
+    /// <summary>
+    /// Spawns item from near storage to scene
+    /// </summary>
+    private void OutputItem()
     {
         Transform storage = null;
 
+        //Gets neasrest storage
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Storage"))
         {
             if (Vector3.Distance(go.transform.position, transform.position) <= 1.5f)
@@ -32,6 +34,7 @@ public class Output : MachineBehaviour
 
         Transform conveyor = null;
 
+        //Gets nearest conveyor
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Conveyor"))
         {
             if (Vector3.Distance(go.transform.position, transform.position) <= 1.2f)
@@ -40,16 +43,20 @@ public class Output : MachineBehaviour
             }
         }
 
+        //Return if storage has no items
         if (GameController.gameController.inventory.Count <= 0)
         {
             return;
         }
 
+        //If both conveyor and storage is near
         if (storage != null && conveyor != null)
         {
+            //Take item from storage
             int id = GameController.gameController.DestroyRandomItem();
 
-            Instantiate(GameController.gameController.allItems[id].prefab, conveyor.position + new Vector3(0,0.3f,0), Quaternion.identity).GetComponent<ItemBehaivour>().id = id;
+            //Spawn item to scene
+            Instantiate(GameController.gameController.allItems[id].prefab, conveyor.position + new Vector3(0, 0.3f, 0), Quaternion.identity).GetComponent<ItemBehaivour>().id = id;
         }
     }
 }
