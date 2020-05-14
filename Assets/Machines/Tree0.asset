@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45db21ec667594baa6232d95d7cf35, type: 3}
+  m_Name: Tree0
+  m_EditorClassIdentifier: 
+  machineName: Bush
+  prefab: {fileID: 1637726235570090270, guid: 9445826f54eb5fc489f0784f87035820, type: 3}
+  placeable: 1
+  icon: {fileID: 21300000, guid: c50abe3aed68da944a3b165361ab2ce3, type: 3}
+  craftItems: 00000000

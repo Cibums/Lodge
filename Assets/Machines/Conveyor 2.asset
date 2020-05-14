@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45db21ec667594baa6232d95d7cf35, type: 3}
+  m_Name: Conveyor 2
+  m_EditorClassIdentifier: 
+  machineName: Conveyor To The Right
+  prefab: {fileID: 5159157994285456703, guid: 7159dccbddc364e4b89e1754bb4e2927, type: 3}
+  placeable: 1
+  icon: {fileID: 21300000, guid: 0bdbe074ac5c068448261a2e53b4a667, type: 3}
+  craftItems: 02000000

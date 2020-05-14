@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb45db21ec667594baa6232d95d7cf35, type: 3}
+  m_Name: Tree1
+  m_EditorClassIdentifier: 
+  machineName: Short Tree
+  prefab: {fileID: 3784837753383128118, guid: 6848cc696b3341a4b9611e5b392faeb0, type: 3}
+  placeable: 0
